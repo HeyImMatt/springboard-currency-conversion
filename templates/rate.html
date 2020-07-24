@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="text-center">
-  <p class="mb-4">The result is:</p>
+  <p class="mb-4">The result is: {{ exchange_rate }}</p>
   <form action="/rate" method="POST">
     <button type="submit" class="btn btn-info">Start Over</button>
   </form>

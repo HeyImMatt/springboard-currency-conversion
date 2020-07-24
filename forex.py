@@ -3,11 +3,10 @@ from forex_python.converter import CurrencyRates, CurrencyCodes
 cr = CurrencyRates()
 cc = CurrencyCodes()
 
-def validate_codes(from_code, to_code):
-    from_name = cc.get_currency_name(from_code)
-    to_name = cc.get_currency_name(to_code)
+def validate_code(code):
+    name = cc.get_currency_name(code)
     
-    if from_name == None or to_name == None:
+    if name == None:
         return False
 
     return True

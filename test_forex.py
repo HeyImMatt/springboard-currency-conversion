@@ -1,11 +1,11 @@
 from unittest import TestCase
-from forex import get_rate, validate_codes
+from forex import get_rate, validate_code
 
 class ForexFunctionsTests(TestCase):
 
     def test_code_validation(self):
-        valid_code = validate_codes('USD', 'EUR')
-        invalid_code = validate_codes('ZZZ', 'EUR')
+        valid_code = validate_code('USD')
+        invalid_code = validate_code('ZZZ')
 
         self.assertTrue(valid_code)
         self.assertFalse(invalid_code)
