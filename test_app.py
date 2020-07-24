@@ -1,0 +1,19 @@
+from unittest import TestCase
+from flask import jsonify
+from app import app
+
+# Make Flask errors be real errors, not HTML pages with error info
+app.config['TESTING'] = True
+
+# This is a bit of hack, but don't use Flask DebugToolbar
+app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
+
+class ForexViewsTests(TestCase):
+
+    def test_home_get_route(self):
+        with app.test_client() as c:
+            resp = c.get('/')
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<h1>', html)
