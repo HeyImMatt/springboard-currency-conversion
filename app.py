@@ -1,5 +1,6 @@
 from flask import Flask, redirect, request, render_template, flash, jsonify, Response
 from flask_debugtoolbar import DebugToolbarExtension
+from forex import get_rate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '1579'
@@ -18,5 +19,5 @@ def home_get_route():
 def rate_get_route():
     if request.method == 'POST': 
         return redirect('/')
-        
+
     return render_template('rate.html')
