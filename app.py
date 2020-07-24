@@ -9,7 +9,7 @@ debug = DebugToolbarExtension(app)
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 @app.route('/', methods=['GET', 'POST'])
-def home_get_route():
+def home():
     if request.method == 'POST':
         from_code = request.form['from-code'].upper() 
         to_code = request.form['to-code'].upper()
@@ -21,12 +21,12 @@ def home_get_route():
             return redirect('/')
 
         exchange_rate = get_rate(from_code, to_code, amount)
-        return redirect(url_for('rate_route', exchange_rate=exchange_rate))
+        return redirect(url_for('rate', exchange_rate=exchange_rate))
 
     return render_template('index.html')
 
 @app.route('/rate<exchange_rate>', methods=['GET', 'POST'])
-def rate_route(exchange_rate):
+def rate(exchange_rate):
     if request.method == 'POST': 
         return redirect('/')
 
