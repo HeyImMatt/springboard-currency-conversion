@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center">
+  <p class="mb-4">The result is:</p>
+  <form action="/rate" method="POST">
+    <button type="submit" class="btn btn-info">Start Over</button>
+  </form>
+</div>
+{% endblock %}

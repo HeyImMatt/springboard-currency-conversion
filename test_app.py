@@ -8,7 +8,7 @@ app.config['TESTING'] = True
 # This is a bit of hack, but don't use Flask DebugToolbar
 app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
 
-class ForexViewsTests(TestCase):
+class AppViewsTests(TestCase):
 
     def test_home_get_route(self):
         with app.test_client() as c:
@@ -16,4 +16,4 @@ class ForexViewsTests(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('<h1>', html)
+            self.assertIn('<form id="currency-form" action="/" method="POST">', html)
