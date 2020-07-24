@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form id="currency-form" action="/" method="POST">
+  <div class="form-group">
+    <label for="convert-from">Convert From</label>
+    <input type="text" class="form-control" name="from" id="convert-from">
+  </div>
+  <button type="submit" class="btn btn-info">Convert</button>
+</form>
+{% endblock %}
