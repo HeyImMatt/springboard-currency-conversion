@@ -2,14 +2,14 @@ from forex import validate_code
 
 def form_validate(from_code, to_code, amount):
     if validate_code(from_code) == False:
-        return 'From code not valid'
+        return f'From code not valid: {from_code}'
     
     if validate_code(to_code) == False:
-        return 'To code not valid'
+        return f'To code not valid: {to_code}'
 
     try:
         float(amount)
     except:
-        return 'Amount needs to be a valid number'
+        return f'Amount needs to be a valid number: {amount}'
 
     return True
