@@ -23,8 +23,8 @@ def home():
             flash(validation_message)
             return redirect('/')
 
-        exchange_rate = get_rate(from_code, to_code, float(amount))
-        return redirect(url_for('rate', exchange_rate=exchange_rate))
+        converted_amount = get_rate(from_code, to_code, float(amount))
+        return redirect(url_for('rate', converted_amount=converted_amount))
 
     return render_template('index.html')
 
@@ -35,5 +35,5 @@ def rate():
     if request.method == 'POST':
         return redirect('/')
 
-    exchange_rate = request.args.get('exchange_rate')
-    return render_template('rate.html', exchange_rate=exchange_rate)
+    converted_amount = request.args.get('converted_amount')
+    return render_template('rate.html', converted_amount=converted_amount)

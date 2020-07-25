@@ -28,7 +28,7 @@ class AppViewsTests(TestCase):
                 'amount': '1'
             })
             self.assertEqual(resp.status_code, 302)
-            self.assertIn('http://localhost/rate?exchange_rate', resp.location)
+            self.assertIn('http://localhost/rate?converted_amount', resp.location)
 
     def test_rate_get_route(self):
         with app.test_client() as c:
