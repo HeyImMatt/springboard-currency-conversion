@@ -16,7 +16,7 @@ class AppViewsTests(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('<form id="currency-form" action="/" method="POST">', html)
+            self.assertIn('<form class="mb-3" id="currency-form" action="/" method="POST">', html)
     
     def test_home_post_route(self):
         with app.test_client() as c:
