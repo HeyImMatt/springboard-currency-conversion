@@ -13,14 +13,14 @@ def home():
     if request.method == 'POST':
         from_code = request.form['from-code'].upper() 
         to_code = request.form['to-code'].upper()
-        amount = float(request.form['amount'])
-        validation_message = form_validate(from_code, to_code)
+        amount = request.form['amount']
+        validation_message = form_validate(from_code, to_code, amount)
 
         if validation_message != True:
             flash(validation_message)
             return redirect('/')
 
-        exchange_rate = get_rate(from_code, to_code, amount)
+        exchange_rate = get_rate(from_code, to_code, float(amount))
         return redirect(url_for('rate', exchange_rate=exchange_rate))
 
     return render_template('index.html')
@@ -33,11 +33,16 @@ def rate():
     exchange_rate = request.args.get('exchange_rate')
     return render_template('rate.html', exchange_rate=exchange_rate)
 
-def form_validate(from_code, to_code):
+def form_validate(from_code, to_code, amount):
     if validate_code(from_code) == False:
         return 'From code not valid'
     
     if validate_code(to_code) == False:
         return 'To code not valid'
+
+    try:
+        float(amount)
+    except:
+        return 'Amount needs to be a valid number'
 
     return True
