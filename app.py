@@ -12,6 +12,7 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    '''Get route shows exchange form. Post route redirects to rate page if user input is valid'''
     if request.method == 'POST':
         from_code = request.form['from-code'].upper()
         to_code = request.form['to-code'].upper()
@@ -30,6 +31,7 @@ def home():
 
 @app.route('/rate', methods=['GET', 'POST'])
 def rate():
+    '''Get route displays exchange rate info. Post route redirects to homepage to start over.'''
     if request.method == 'POST':
         return redirect('/')
 
