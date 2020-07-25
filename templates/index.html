@@ -18,6 +18,8 @@
   <button type="submit" class="btn btn-info">Convert</button>
 </form>
 {% for msg in get_flashed_messages() %}
-  <p>{{ msg }}</p>
+  <div class="alert alert-danger text-center" role="alert">
+    {{ msg }}
+  </div>
 {% endfor %}
 {% endblock %}
