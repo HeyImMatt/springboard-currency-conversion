@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="text-center">
-  <p class="mb-4">The converted amount is: {{ converted_amount }}</p>
+<div class="mt-5 text-center">
+  <h4>Converted Amount</h4>
+  <h2 class="display-4">{{ converted_amount }}</h2>
   <form action="/rate" method="POST">
-    <button type="submit" class="btn btn-info">Start Over</button>
+    <button type="submit" class="btn btn-info mt-5">Start Over</button>
   </form>
 </div>
 {% endblock %}

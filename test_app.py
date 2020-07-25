@@ -49,7 +49,7 @@ class AppViewsTests(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('The converted amount is: US$1.00', html)
+            self.assertIn('US$1.00', html)
 
     def test_rate_post_route(self):
         with app.test_client() as c:
