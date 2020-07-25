@@ -24,7 +24,7 @@ def home():
             return redirect('/')
 
         converted_amount = get_rate(from_code, to_code, float(amount))
-        
+
         if converted_amount == False:
             flash('Cannot convert. Conversion service down. 🙁')
             return redirect('/')
