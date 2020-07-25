@@ -17,13 +17,18 @@ def home():
         from_code = request.form['from-code'].upper()
         to_code = request.form['to-code'].upper()
         amount = request.form['amount']
-        validation_message = form_validate(from_code, to_code, amount)
+        validation = form_validate(from_code, to_code, amount)
 
-        if validation_message != True:
-            flash(validation_message)
+        if validation != True:
+            flash(validation)
             return redirect('/')
 
         converted_amount = get_rate(from_code, to_code, float(amount))
+        
+        if converted_amount == False:
+            flash('Cannot convert. Conversion service down. 🙁')
+            return redirect('/')
+
         return redirect(url_for('rate', converted_amount=converted_amount))
 
     return render_template('index.html')

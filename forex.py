@@ -19,4 +19,4 @@ def get_rate(from_code, to_code, amount):
         symbol = cc.get_symbol(to_code)
         return f'{symbol}{rate}'
     except:
-        print('Cannot convert. Conversion service down')
+        return False

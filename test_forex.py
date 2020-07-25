@@ -10,7 +10,12 @@ class ForexFunctionsTests(TestCase):
         self.assertTrue(valid_code)
         self.assertFalse(invalid_code)
 
-    def test_conversion(self):
+    def test_conversion_success(self):
         rate = get_rate('USD', 'USD', 1)
 
         self.assertIn('$', rate)
+    
+    def test_conversion_failure(self):
+        rate = get_rate('ZZZ', 'USD', 1)
+
+        self.assertIs(rate, False)
