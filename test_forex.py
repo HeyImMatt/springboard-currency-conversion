@@ -11,6 +11,6 @@ class ForexFunctionsTests(TestCase):
         self.assertFalse(invalid_code)
 
     def test_conversion(self):
-        rate = get_rate('USD', 'EUR', 1)
+        rate = get_rate('USD', 'USD', 1)
 
-        self.assertIn('€', rate)
+        self.assertIn('$', rate)

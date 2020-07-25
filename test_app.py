@@ -20,23 +20,36 @@ class AppViewsTests(TestCase):
             self.assertIn(
                 '<form class="mb-3" id="currency-form" action="/" method="POST">', html)
 
-    def test_home_post_route(self):
+    def test_home_post_route_success(self):
         with app.test_client() as c:
             resp = c.post('/', data={
                 'from-code': 'USD',
-                'to-code': 'EUR',
+                'to-code': 'USD',
                 'amount': '1'
             })
+
             self.assertEqual(resp.status_code, 302)
-            self.assertIn('http://localhost/rate?converted_amount', resp.location)
+            self.assertIn('http://localhost/rate?converted_amount=US%241.00', resp.location)
+
+    def test_home_post_route_failure(self):
+        with app.test_client() as c:
+            resp = c.post('/', data={
+                'from-code': 'ZZZ',
+                'to-code': 'USD',
+                'amount': '1'
+            }, follow_redirects=True)
+            html = resp.get_data(as_text=True)
+            
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('From code not valid', html)
 
     def test_rate_get_route(self):
         with app.test_client() as c:
-            resp = c.get('/rate')
+            resp = c.get('/rate?converted_amount=US%241.00')
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('The result is:', html)
+            self.assertIn('The converted amount is: US$1.00', html)
 
     def test_rate_post_route(self):
         with app.test_client() as c:
