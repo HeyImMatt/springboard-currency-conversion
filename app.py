@@ -25,11 +25,12 @@ def home():
 
     return render_template('index.html')
 
-@app.route('/rate<exchange_rate>', methods=['GET', 'POST'])
-def rate(exchange_rate):
+@app.route('/rate', methods=['GET', 'POST'])
+def rate():
     if request.method == 'POST': 
         return redirect('/')
 
+    exchange_rate = request.args.get('exchange_rate')
     return render_template('rate.html', exchange_rate=exchange_rate)
 
 def form_validate(from_code, to_code):
